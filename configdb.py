@@ -24,26 +24,33 @@ try:
 except:
     print("Connection to PostGreSQL error")
 
-# create a table or check if it already exists, get error (psycopg2.errors.DuplicateTable: relation "nonsense" already exists)
+create a table or check if it already exists, get error (psycopg2.errors.DuplicateTable: relation "nonsense" already exists)
 try:
-    create_table_query = '''CREATE TABLE nonsense
+    create_table_query = '''CREATE TABLE recipes
             (ID INT PRIMARY KEY,
-            DOGS           TEXT,
-            CATS         TEXT); '''
+            TITLE           TEXT,
+            DESCRIPTION         TEXT); '''
+    cursor.execute(create_table_query)
 
-    # cursor.execute(create_table_query)
-    # connection.commit()
+    create_table_query = '''CREATE TABLE recipe_ingredients
+            (RECIPE_ID           TEXT,
+            INGREDIENT_ID         TEXT); '''
+    cursor.execute(create_table_query)
+
+    create_table_query = '''CREATE TABLE ingredients
+            (INGREDIENT_ID           TEXT,
+            NAME         TEXT); '''
+    cursor.execute(create_table_query)
+
+    create_table_query = '''CREATE TABLE recipe_steps
+            (STEP_NUM           INT,
+            RECIPE_ID           TEXT,
+            INSTRUCTION         TEXT); '''
+    cursor.execute(create_table_query)
+
+    connection.commit()
     print("Table created successfully in PostgreSQL ")
 
     # maybe check that the table is empty or not? If empty then import
 except:
     print("failed to create table nonsense")
-
-# import data into the table
-try:
-    insert_data_query = '''INSERT INTO nonsense (ID, DOGS, CATS) VALUES (5, 'Penelope', 'Pumpkin')'''
-    cursor.execute(insert_data_query)
-    connection.commit()
-    print("data successfully inserted into table")
-except:
-    print("failed to push data into table")

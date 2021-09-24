@@ -1,0 +1,20 @@
+{ 
+    "title": "example2",
+    "description": "example format",
+    "instructions": [{
+        "step": 1,
+        "period": 1,
+        "description": "example"
+    },
+    {
+        "step": 2,
+        "period": 3,
+        "description": "example"
+    },
+    {
+        "step": 3,
+        "period": 5,
+        "description": "example"
+    }
+    ]
+}
